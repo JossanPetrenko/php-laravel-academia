@@ -17,9 +17,18 @@ Route::get('/', function () {
 Route::get('/welcome', function () {
     return view('welcome');
 });
+Route::get('/treino', function () {
+    return view('treino.treinos');
+});
+Route::get('/pessoa', function () {
+    return view('pessoa.pessoas');
+});
+
 
 
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/treino/{id}', 'TreinoController@index');
