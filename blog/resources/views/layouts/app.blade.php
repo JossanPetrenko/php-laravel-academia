@@ -76,5 +76,24 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script> 
+        window.deleteItem = function(url){
+            document.body.classList.add("loading");
+            axios.delete(url).then(function(){
+                window.location.reload();
+                document.body.classList.remove("loading");
+            }).catch(function(){
+                document.body.classList.remove("loading");
+                alert("Não foi possivel excluir esse registro!");
+            })
+        }
+        </script>
+        <div class="loading-overlay">
+            <span class="spin" style="display:inline-block">
+                <span class="mdi mdi-timer-sand-empty "></span>
+            </span>
+        </div>
 </body>
 </html>
+
+

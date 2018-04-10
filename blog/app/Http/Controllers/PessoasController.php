@@ -25,7 +25,7 @@ class PessoasController extends Controller
      */
     public function create()
     {
-        //
+        return view('pessoa.pessoa',['pessoa' => new Pessoa()]);
     }
 
     /**
@@ -36,12 +36,21 @@ class PessoasController extends Controller
      */
     public function store(Request $request)
     {
-        $pessoa=$request->all();
-        unset($pessoa["id"]);
-        unset($pessoa["_token"]);
-        Pessoa::where('id',$request->id)->update($pessoa);
-       // $pessoa->save();
-        return redirect('pessoas');
+        if(empty($request->id)){
+            $pessoa=$request->all();
+            unset($pessoa["_token"]);
+            Pessoa::insert($pessoa);
+            return redirect('pessoas');
+        }else
+        {
+        //dd($request->all());
+            $pessoa=$request->all();
+            unset($pessoa["id"]);
+            unset($pessoa["_token"]);
+            Pessoa::where('id',$request->id)->update($pessoa);
+        // $pessoa->save();
+            return redirect('pessoas');
+        }
     }
 
     /**
@@ -89,6 +98,7 @@ class PessoasController extends Controller
      */
     public function destroy(Pessoa $pessoa)
     {
-        //
+
+        Pessoa::destroy($pessoa->id);
     }
 }
