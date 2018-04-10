@@ -11,6 +11,8 @@
     <title>{{ config('cabecada', 'Academia Gym') }}</title>
 
     <!-- Styles -->
+    <link rel="stylesheet" href="//cdn.materialdesignicons.com/2.2.43/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -27,7 +29,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                     @guest
+                        <span />
+                     @else 
+                        <li><a class="nav-link" href="{{ route('pessoas.index') }}">{{ __('Pessoas') }}</a></li>
+                        {{-- <li><a class="nav-link" href="{{ route('treino') }}">{{ __('Treinos') }}</a></li> --}}
+                     @endguest
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -61,7 +68,9 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            <div class="container">
+                @yield('content')
+            </div>
         </main>
     </div>
 

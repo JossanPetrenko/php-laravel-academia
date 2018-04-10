@@ -12,18 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('master');
 });
 Route::get('/welcome', function () {
     return view('welcome');
 });
-Route::get('/treino', function () {
-    return view('treino.treinos');
-});
-Route::get('/pessoa', function () {
-    return view('pessoa.pessoas');
-});
-
+Route::resource('pessoas', 'PessoasController');
 
 
 
